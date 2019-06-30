@@ -1,0 +1,144 @@
+﻿<Window x:Class="BlackjackStrategy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Optimal Blackjack Strategy Finder Using a Genetic Algorithm"
+        SizeToContent="Manual"
+        Height="725"
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="DarkGray"
+        x:Name="_this"
+        FontSize="14">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="Background"
+                    Value="LightGreen" />
+            <Setter Property="Margin"
+                    Value="10" />
+            <Setter Property="Height"
+                    Value="26" />
+            <Setter Property="Width"
+                    Value="100" />
+        </Style>
+        <Style x:Key="HeadingStyle"
+               TargetType="Label">
+            <Setter Property="FontWeight"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Foreground"
+                    Value="DarkGreen" />
+            <Setter Property="Margin"
+                    Value="5 0 0 0" />
+        </Style>
+        <Style x:Key="BigHeadingStyle"
+               TargetType="Label">
+            <Setter Property="FontWeight"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="Foreground"
+                    Value="DarkGreen" />
+            <Setter Property="Margin"
+                    Value="5 0 0 0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Right" />
+        </Style>
+        <Style x:Key="BigValueStyle"
+               TargetType="Label">
+            <Setter Property="FontWeight"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="Foreground"
+                    Value="Black" />
+            <Setter Property="Margin"
+                    Value="5 0 0 0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="Height"
+                    Value="20" />
+            <Setter Property="Width"
+                    Value="30" />
+            <Setter Property="Margin"
+                    Value="0" />
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0"
+                Grid.Row="0"
+                BorderThickness="8 8 4 8"
+                Background="LightGray">
+            <DockPanel LastChildFill="True"
+                       VerticalAlignment="Stretch"
+                       Margin="8">
+                <xctk:PropertyGrid x:Name="propGrid"
+                                   Padding="0"
+                                   DockPanel.Dock="Top"
+                                   NameColumnWidth="200"
+                                   ShowSearchBox="False"
+                                   ShowSortOptions="False"
+                                   ShowTitle="False"
+                                   ShowAdvancedOptions="False"
+                                   ShowPreview="false"
+                                   ShowSummary="True"
+                                   IsMiscCategoryLabelHidden="True"
+                                   SelectedObject="{Binding ElementName=_this, Path=ProgramConfiguration}"
+                                   Margin="0" />
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <Button HorizontalAlignment="Left"
+                            x:Name="btnSolve"
+                            Click="btnSolve_Click">Find Solution</Button>
+                    <Button HorizontalAlignment="Left"
+                            x:Name="btnShowKnown"
+                            Click="btnShowKnown_Click">Show Known</Button>
+                </StackPanel>
+                <ScrollViewer DockPanel.Dock="Top"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch">
+                    <TextBlock x:Name="gaResultTB"
+                               VerticalAlignment="Top"
+                               Text="Configure settings,then click on the green Find Solution button to proceed"
+                               Margin="10"
+                               TextWrapping="Wrap"
+                               FontSize="12px"
+                               HorizontalAlignment="Left" />
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+        <Border Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                BorderThickness="4 8 8 8"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Background="LightGray"
+                >
+            <Canvas x:Name="canvas"
+                    Background="AntiqueWhite"
+                    Width="auto"                    
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                <TextBlock TextWrapping="Wrap" Margin="20" Width="500">
+                This program builds a strategy to play Blackjack using a genetic algorithm. 
+                Adjust the settings in the property grid (left) and press the Find Solution button.  
+                Each generation will display its best solution, until the final solution is displayed.    
+                </TextBlock>
+            </Canvas>
+        </Border>
+    </Grid>
+</Window>
